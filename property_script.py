@@ -9,7 +9,7 @@ import unittest, time, re
 driver = webdriver.Chrome(executable_path='F:\chromedriver_win32\chromedriver.exe')
 
 
-driver.get('https://libertymutual.com/homeowners-insurance')
+driver.get('www.google.com')
 
 driver.maximize_window()
 driver.find_element_by_xpath('//*[@id="quote-zipCode-input"]').click
