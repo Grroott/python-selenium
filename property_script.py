@@ -1,15 +1,14 @@
-# -*- coding: utf-8 -*-
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 
-import unittest, time, re
+import time
 
 driver = webdriver.Chrome(executable_path='F:\chromedriver_win32\chromedriver.exe')
 
 
-driver.get('www.google.com')
+driver.get('https://libertymutual.com/homeowners-insurance')
 
 driver.maximize_window()
 driver.find_element_by_xpath('//*[@id="quote-zipCode-input"]').click
@@ -19,10 +18,7 @@ driver.find_element_by_xpath('//*[@id="rentersQuteForm"]/div/div[3]/button').cli
 time.sleep(10)
                               
 driver.implicitly_wait(100)
-# time.sleep(15)
-print("hello")
 driver.refresh()
-print("hello")
 driver.find_element_by_xpath('//*[@id="fullAddress-insuredLocation-0"]/span[2]/input').click()
 driver.find_element_by_xpath('//*[@id="fullAddress-insuredLocation-0"]/span[2]/input').clear()
 driver.find_element_by_xpath('//*[@id="fullAddress-insuredLocation-0"]/span[2]/input').send_keys(
@@ -167,7 +163,6 @@ driver.implicitly_wait(15)
 driver.find_element_by_xpath(
     '//*[@id="anyPhysicalConditionsExistIndicator-insuredLocation-0"]/div[2]/div/div[2]/label/span').click()
 driver.implicitly_wait(1)
-#time.sleep(10)
 
 driver.find_element_by_xpath(
     '//*[@id="underConstructionIndicator-insuredLocation-0"]/div[2]/div/div[2]/label/span').click()
