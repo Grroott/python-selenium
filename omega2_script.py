@@ -27,6 +27,7 @@ driver.find_element_by_xpath(
     '//*[@id="1555468516747"]/section/div[2]/section/form/div[2]/div[5]/div/div/button').submit()
 
 driver.implicitly_wait(10)
+
 try:
     time.sleep(10)
     ok =  driver.find_element_by_xpath('//*[@id="discount-marketing-modal"]/footer/button')
@@ -171,25 +172,20 @@ driver.find_element_by_xpath('//*[@id="auto-policy-indicator"]/fieldset/div/labe
 
 driver.implicitly_wait(2)
 
-driver.find_element_by_xpath('//*[@id="current-status-NEWLY_LICENSED"]').click()
+
+element = driver.find_element_by_xpath('//*[@id="current-status"]/fieldset/div/label[3]')
+driver.execute_script("arguments[0].click();", element)
+
 
 driver.implicitly_wait(2)
 
-#driver.find_element_by_xpath('//*[@id="current-status"]/fieldset/div/label[1]/span').click()
-#driver.find_element_by_xpath('//*[@id="current-status"]/fieldset/div/label[1]/span/span[2]').click()
-
-driver.implicitly_wait(2)
-
-#driver.find_element_by_xpath('//*[@id="current-status"]/fieldset/div/label[1]/span/span[1]').click()
-#//*[@id="current-status"]/fieldset/div/label[1]/span
-
-
-#driver.implicitly_wait(2)
 
 driver.find_element_by_xpath('//*[@id="new-policy-start-next"]').click()
 
-# driver.implicitly_wait(5)
 
-time.sleep(15)
+
+time.sleep(5)
+
+driver.close()
 
 
