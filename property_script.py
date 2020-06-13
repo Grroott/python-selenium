@@ -3,6 +3,8 @@ from selenium.webdriver.common.by import By
 from selenium.webdriver.common.keys import Keys
 from selenium.webdriver.support.ui import Select
 
+from selenium.webdriver.common.action_chains import ActionChains
+
 import time
 
 driver = webdriver.Chrome(executable_path='F:\chromedriver_win32\chromedriver.exe')
@@ -15,10 +17,17 @@ driver.find_element_by_xpath('//*[@id="quote-zipCode-input"]').click
 driver.find_element_by_xpath('//*[@id="quote-zipCode-input"]').send_keys('03878')
 time.sleep(3)
 driver.find_element_by_xpath('//*[@id="rentersQuteForm"]/div/div[3]/button').click()
-time.sleep(10)
-                              
+
 driver.implicitly_wait(100)
-driver.refresh()
+try:
+    time.sleep(10)
+    ok =  driver.find_element_by_xpath('//*[@id="discount-marketing-modal"]/footer/div[1]/div/button')
+    ActionChains(driver).move_to_element(ok).pause(1).click(ok).perform()
+    time.sleep(3)
+except:
+    pass
+driver.implicitly_wait(100)
+
 driver.find_element_by_xpath('//*[@id="fullAddress-insuredLocation-0"]/span[2]/input').click()
 driver.find_element_by_xpath('//*[@id="fullAddress-insuredLocation-0"]/span[2]/input').clear()
 driver.find_element_by_xpath('//*[@id="fullAddress-insuredLocation-0"]/span[2]/input').send_keys(
