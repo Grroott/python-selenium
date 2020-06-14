@@ -18,7 +18,7 @@ driver.find_element_by_xpath('//*[@id="quote-zipCode-input"]').send_keys('03878'
 time.sleep(3)
 driver.find_element_by_xpath('//*[@id="rentersQuteForm"]/div/div[3]/button').click()
 
-driver.implicitly_wait(100)
+driver.implicitly_wait(20)
 try:
     time.sleep(10)
     ok =  driver.find_element_by_xpath('//*[@id="discount-marketing-modal"]/footer/div[1]/div/button')
@@ -26,7 +26,7 @@ try:
     time.sleep(3)
 except:
     pass
-driver.implicitly_wait(100)
+driver.implicitly_wait(10)
 
 driver.find_element_by_xpath('//*[@id="fullAddress-insuredLocation-0"]/span[2]/input').click()
 driver.find_element_by_xpath('//*[@id="fullAddress-insuredLocation-0"]/span[2]/input').clear()
@@ -43,7 +43,7 @@ driver.find_element_by_xpath(
 driver.implicitly_wait(1)
 
 driver.find_element_by_xpath('//*[@id="nextButton-0"]').click()
-driver.implicitly_wait(15)
+driver.implicitly_wait(30)
 
 driver.find_element_by_xpath(
     "(.//*[normalize-space(text()) and normalize-space(.)='First Name'])[1]/following::input[1]").click()
@@ -82,21 +82,28 @@ driver.find_element_by_xpath('//*[@id="emailAddress-insured-0"]/span[2]/input').
 driver.find_element_by_xpath('//*[@id="emailAddress-insured-0"]/span[2]/input').send_keys("test.test@gmail.com")
 driver.implicitly_wait(1)
 driver.find_element_by_xpath('//*[@id="nextButton-1"]').click()
-driver.implicitly_wait(3)
-Select(driver.find_element_by_id(
-    "propertyCurrentlyInsuredCode-insuranceHistory-0_selectNode")).select_by_visible_text(
-    "No, first time home buyer")
-driver.implicitly_wait(1)
-driver.find_element_by_xpath(
-    '//*[@id="hasOtherLibertyMutualPolicies-insuranceHistory-0"]/div[2]/div/div[2]/label').click()
-driver.implicitly_wait(1)
-driver.find_element_by_xpath('//*[@id="claimLossIndicator-insuranceHistory-0"]/div[2]/div/div[2]/label').click()
-driver.implicitly_wait(3)
-driver.find_element_by_xpath('//*[@id="mortgageIndicator-quote-0"]/div[2]/div/div[2]/label/span').click()
-driver.implicitly_wait(1)
-driver.find_element_by_xpath('//*[@id="nextButton-0"]').click()
-driver.implicitly_wait(15)
+driver.implicitly_wait(20)
+temp_var = 0
+try:
 
+    Select(driver.find_element_by_id(
+        "propertyCurrentlyInsuredCode-insuranceHistory-0_selectNode")).select_by_visible_text(
+        "No, first time home buyer")
+    driver.implicitly_wait(1)
+    driver.find_element_by_xpath(
+        '//*[@id="hasOtherLibertyMutualPolicies-insuranceHistory-0"]/div[2]/div/div[2]/label').click()
+    driver.implicitly_wait(1)
+    driver.find_element_by_xpath('//*[@id="claimLossIndicator-insuranceHistory-0"]/div[2]/div/div[2]/label').click()
+    driver.implicitly_wait(3)
+    driver.find_element_by_xpath('//*[@id="mortgageIndicator-quote-0"]/div[2]/div/div[2]/label/span').click()
+    driver.implicitly_wait(1)
+    driver.find_element_by_xpath('//*[@id="nextButton-0"]').click()
+    driver.implicitly_wait(30)
+    
+except:
+    temp_var=1
+    driver.implicitly_wait(10)
+    
 Select(driver.find_element_by_id("homeStyleSimplified-insuredLocation-0_selectNode")).select_by_visible_text("1 Story")
 
 driver.find_element_by_xpath(
@@ -120,8 +127,7 @@ Select(driver.find_element_by_id("foundationType-insuredLocation-0_selectNode"))
 Select(driver.find_element_by_id("roofMaterial-insuredLocation-0_selectNode")).select_by_visible_text(
     "Concrete Tile")
 
-Select(driver.find_element_by_xpath('//*[@id="policyStartDate-quote-0_selectNode"]')).select_by_visible_text(
-    "August 10, 2020")
+Select(driver.find_element_by_xpath('//*[@id="policyStartDate-quote-0_selectNode"]')).select_by_visible_text("August 10, 2020")
 
 Select(driver.find_element_by_xpath(
     '//*[@id="propertyPurchaseDate-insuredLocation-0"]/div/label[1]/select')).select_by_visible_text('May')
@@ -149,7 +155,12 @@ Select(driver.find_element_by_xpath(
 #     driver.find_element_by_xpath('//*[@id="ageOfRoof-insuredLocation-0_selectNode"]')).select_by_visible_text(
 #     '2015')
 
-driver.find_element_by_xpath('//*[@id="nextButton-1"]').click()
+if temp_var == 0:
+    driver.find_element_by_xpath('//*[@id="nextButton-1"]').click()
+else:
+    driver.find_element_by_xpath('//*[@id="nextButton-0"]').click()
+
+
 driver.implicitly_wait(15)
 Select(driver.find_element_by_xpath('//*[@id="primaryHeatingSource-insuredLocation-1_selectNode"]')).select_by_visible_text("Oil")
 driver.find_element_by_xpath('//*[@id="primaryHeatingSource-insuredLocation-1_selectNode"]').click()
@@ -166,7 +177,12 @@ driver.implicitly_wait(1)
 driver.find_element_by_xpath(
     '//*[@id="undergroundOilStorageTank-insuredLocation-0"]/div[2]/div/div[2]/label/span').click()
 driver.implicitly_wait(1)
-driver.find_element_by_xpath('//*[@id="nextButton-0"]').click()
+
+if temp_var==0:
+    driver.find_element_by_xpath('//*[@id="nextButton-0"]').click()
+else:
+    driver.find_element_by_xpath('//*[@id="nextButton-1"]').click()
+
 driver.implicitly_wait(15)
 
 driver.find_element_by_xpath(
@@ -184,11 +200,32 @@ driver.implicitly_wait(1)
 driver.find_element_by_xpath(
     '//*[@id="animalIndicator-insuredLocation-0"]/div[2]/div/div[2]/label/span').click()
 driver.implicitly_wait(1)
-driver.find_element_by_xpath('//*[@id="nextButton-1"]').click()
+
+if temp_var == 1:
+    driver.find_element_by_xpath('//*[@id="nextButton-0"]').click()
+else:
+    driver.find_element_by_xpath('//*[@id="nextButton-1"]').click()
+    
 driver.implicitly_wait(15)
 
 driver.find_element_by_xpath('//*[@id="next-button"]').click()
 driver.implicitly_wait(15)
+
+
+if temp_var == 1:
+
+    Select(driver.find_element_by_id("propertyCurrentlyInsuredCode-insuranceHistory-0_selectNode")).select_by_visible_text("No, first time home buyer")
+    driver.implicitly_wait(1)
+    driver.find_element_by_xpath(
+        '//*[@id="hasOtherLibertyMutualPolicies-insuranceHistory-0"]/div[2]/div/div[2]/label').click()
+    driver.implicitly_wait(1)
+    driver.find_element_by_xpath('//*[@id="claimLossIndicator-insuranceHistory-0"]/div[2]/div/div[2]/label').click()
+    driver.implicitly_wait(3)
+    driver.find_element_by_xpath('//*[@id="mortgageIndicator-quote-0"]/div[2]/div/div[2]/label/span').click()
+    driver.implicitly_wait(1)
+    driver.find_element_by_xpath('//*[@id="nextButton-0"]').click()
+    driver.implicitly_wait(15)
+
 
 Select(driver.find_element_by_xpath('//*[@id="employmentStatus-insured-0_selectNode"]')).select_by_visible_text(
     'Employed')
@@ -196,7 +233,12 @@ driver.implicitly_wait(1)
 Select(driver.find_element_by_xpath(
     '//*[@id="highestEducationLevel-insured-0_selectNode"]')).select_by_visible_text('Bachelors')
 driver.implicitly_wait(1)
-driver.find_element_by_xpath('//*[@id="nextButton-0"]').click()
+
+if temp_var == 1:
+    driver.find_element_by_xpath('//*[@id="nextButton-1"]').click()
+else:
+    driver.find_element_by_xpath('//*[@id="nextButton-0"]').click()
+    
 driver.implicitly_wait(15)
 
 driver.find_element_by_xpath('//*[@id="socialSecurityNumber-insured-0"]/span[2]/div/div/input')
