@@ -13,7 +13,7 @@ driver = webdriver.Chrome(executable_path=os.environ.get("CHROMEDRIVER_PATH"), c
 
 #driver = webdriver.Chrome(executable_path='F:\chromedriver_win32\chromedriver.exe')
 
-#Stack
+#Stackoverflow
 
 driver.get('https://stackoverflow.com/')
 
@@ -33,7 +33,8 @@ time.sleep(2)
 
 driver.get('https://stackoverflow.com/users/11321166/gokul-nath')
 
-print(driver.find_element_by_xpath('//*[@id="top-cards"]/aside[2]/div/div/div[2]/div[2]/div/div[1]/span').text)
+result = driver.find_element_by_xpath('//*[@id="top-cards"]/aside[2]/div/div/div[2]/div[2]/div/div[1]/span').text
+print(result)
 time.sleep(5)
 
 #Insta
@@ -69,11 +70,3 @@ print("Message sent")
 time.sleep(5)
 
 driver.close()
-
-
-
-
-
-
-
-
